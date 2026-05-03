@@ -9,6 +9,10 @@
 <title>aynen | FiveM Developer</title>
 
 <style>
+    html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* navbar altında kalmaması için */
+}
 body {
     margin: 0;
     cursor: none;
@@ -219,7 +223,24 @@ nav a:hover::after {
     border: 1px solid rgba(56,189,248,0.35);
     box-shadow: 0 10px 40px rgba(56,189,248,0.08);
 }
+#team .card {
+    text-align: center;
+}
 
+#team img {
+    box-shadow: 0 0 20px rgba(56,189,248,0.2);
+}
+
+#team h3 {
+    margin: 10px 0 5px 0;
+    color: #ffffff;
+}
+
+#team p {
+    margin: 2px 0;
+    color: #94a3b8;
+    font-size: 13px;
+}
 /* FOOTER */
 footer {
     text-align: center;
@@ -279,6 +300,7 @@ footer {
         <a href="#about">Hakkımda</a>
         <a href="#skills">Yetenekler</a>
         <a href="#projects">Projeler</a>
+        <a href="#team">Ekibimiz</a>
     </nav>
 
     <div class="nav-space"></div>
@@ -365,7 +387,6 @@ footer {
     <h2>Projeler</h2>
 
     <div class="grid">
-
         <div class="card">
             <h3>Gelişmiş Bankacılık Sistemi</h3>
             <p>Full UI + Backend Entegre Banka Sistemi, Transfer, ATM ve Log Sistemi.</p>
@@ -395,10 +416,48 @@ footer {
             <h3>Sunucu Optimizasyon Paketi</h3>
             <p>Event Optimizasyonu ve Sunucu Performans İyileştirme Araçları.</p>
         </div>
-
     </div>
 </section>
 
+<!-- TEAM TAMAMEN AYRI OLMALI -->
+<section class="section" id="team">
+    <h2>Ekibimiz</h2>
+
+    <div class="grid">
+        <div class="card">
+            <img src="profil.png" style="width:60px;height:60px;border-radius:50%;margin-bottom:10px;">
+            <h3>'aynen</h3>
+            <p>Founder / FiveM Developer</p>
+            <p>QBCore & Lua Specialist, Sistem Geliştirici.</p>
+        </div>
+    </div>
+</section>
+
+    </div>
+</section>
+<section class="section" id="contact">
+    <h2>İletişim</h2>
+
+    <div class="card">
+        <form action="https://formspree.io/f/xdabavlj" method="POST">
+
+            <input type="text" name="name" placeholder="Adınız Soyadınız" required style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:none;outline:none;">
+
+            <input type="email" name="email" placeholder="E-posta" required style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:none;outline:none;">
+
+            <textarea name="message" placeholder="Mesaj" required style="width:100%;padding:10px;height:120px;border-radius:8px;border:none;outline:none;"></textarea>
+
+            <button type="submit" style="margin-top:10px;padding:10px 20px;border:none;border-radius:8px;background:#38bdf8;color:black;font-weight:bold;cursor:pointer;">
+                Gönder
+            </button>
+
+        </form>
+    </div>
+
+    <div class="card">
+        </b>discord: aynenkankacim</p>
+    </div>
+</section>
 <footer>
     <div class="footer-content">
         <span>© 2026 aynen | FiveM Developer</span>
