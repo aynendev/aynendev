@@ -26,7 +26,82 @@ body {
         linear-gradient(90deg, rgba(56,189,248,0.05) 1px, transparent 1px);
     background-size: 40px 40px;
 }
+.icon {
+    margin-right: 6px;
+}
+.trail-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: #38bdf8;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.7;
+    box-shadow: 0 0 10px #38bdf8;
+}
+.badge {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 3px 10px;
+    font-size: 11px;
+    border-radius: 6px;
+    background: rgba(56,189,248,0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56,189,248,0.3);
+    letter-spacing: 1px;
+}
+.card {
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
 
+.card:hover {
+    box-shadow: 0 20px 60px rgba(56,189,248,0.15);
+}
+.card h3 {
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+#team .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#team .card {
+    background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(99,102,241,0.05));
+    border: 1px solid rgba(56,189,248,0.25);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+}
+#team .card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(56,189,248,0.2);
+}
+#team img {
+    border: 2px solid rgba(56,189,248,0.5);
+    padding: 2px;
+    box-shadow: 0 0 25px rgba(56,189,248,0.25);
+    transition: 0.3s;
+}
+
+#team img:hover {
+    transform: scale(1.05);
+}
+.section h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #e2e8f0;
+}
 /* ARKA PLAN GLOW */
 body::after {
     content: "";
@@ -281,9 +356,47 @@ footer {
 }
 </style>
 </head>
+<script>
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
 
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (x - centerX) / 20;
+
+        card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0deg) rotateY(0deg)";
+    });
+});
+</script>
 <body>
+<script>
+const trail = [];
 
+document.addEventListener("mousemove", (e) => {
+    const dot = document.createElement("div");
+    dot.className = "trail-dot";
+
+    dot.style.left = e.clientX + "px";
+    dot.style.top = e.clientY + "px";
+
+    document.body.appendChild(dot);
+    trail.push(dot);
+
+    setTimeout(() => {
+        dot.remove();
+    }, 300);
+});
+</script>
 <!-- SNOW -->
 <div id="snow"></div>
 
@@ -294,7 +407,7 @@ footer {
 
 <header>
     <div class="logo">aynen<span>.dev</span></div>
-
+<div id="trail"></div>
     <nav>
         <a href="#home">Ana Sayfa</a>
         <a href="#about">Hakkımda</a>
@@ -310,7 +423,60 @@ footer {
     <h2>High Performance FiveM Development</h2>
     <p>Custom scriptler, optimize sistemler ve sorunsuz roleplay deneyimi.</p>
 </section>
+<section class="section" id="stats">
+    <h2>📊 Deneyim & Başarılar</h2>
 
+    <div class="grid">
+
+        <div class="card">
+            <h3>⏳ 3+ Yıl Geliştirme Deneyimi</h3>
+            <p>FiveM ekosisteminde aktif olarak script ve sistem geliştirme.</p>
+        </div>
+
+        <div class="card">
+            <h3>⚙️ 50+ Geliştirilen Sistem</h3>
+            <p>Bankacılık, envanter, job ve UI sistemleri dahil olmak üzere üretim projeleri.</p>
+        </div>
+
+        <div class="card">
+            <h3>10+ Aktif Sunucu Entegrasyonu</h3>
+            <p>Gerçek sunucularda kullanılan stabil ve optimize çözümler.</p>
+        </div>
+
+        <div class="card">
+            <h3>📈 Performans Odaklı Geliştirme</h3>
+            <p>FPS düşürmeyen, event optimize edilmiş modern yapı yaklaşımı.</p>
+        </div>
+
+    </div>
+</section>
+<section class="section" id="process">
+    <h2>⚙️Geliştirme Süreci</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>1️⃣ Analiz & Planlama</h3>
+            <p>İhtiyaçlar detaylı analiz edilir, sistem mimarisi ve teknik yapı planlanır.</p>
+        </div>
+
+        <div class="card">
+            <h3>2️⃣ UI & Sistem Tasarımı</h3>
+            <p>Kullanıcı deneyimi odaklı arayüz ve backend yapı birlikte tasarlanır.</p>
+        </div>
+
+        <div class="card">
+            <h3>3️⃣ Geliştirme Aşaması</h3>
+            <p>Modüler, temiz ve optimize edilmiş kod yapısı ile sistem geliştirilir.</p>
+        </div>
+
+        <div class="card">
+            <h3>4️⃣ Test & Optimizasyon</h3>
+            <p>Performans testleri yapılır, event ve database optimizasyonları uygulanır.</p>
+        </div>
+
+    </div>
+</section>
 <section class="section" id="about">
     <h2>Hakkımda</h2>
 
@@ -346,6 +512,7 @@ footer {
                 3+ yıl deneyim ile QBCore ve ESX frameworkleri üzerinde script geliştirme.
                 Inventory, banking, job, UI ve core system modifikasyonları.
             </p>
+            <p style="color:#ffe606;">★★★★★</p>
         </div>
 
         <div class="card">
@@ -354,15 +521,16 @@ footer {
                 Framework yapısını derinlemesine kullanma ve özelleştirme.
                 Performans odaklı event yapıları ve optimize server-side logic.
             </p>
+            <p style="color:#ffe606;">★★★★★</p>
         </div>
 
         <div class="card">
-            <h3>Lua Development</h3>
-            <p>
-                FiveM native sistemleri kullanarak advanced script geliştirme.
-                Oyun içi mekanikleri sıfırdan inşa etme.
-            </p>
-        </div>
+    <h3>Lua Development</h3>
+    <p>FiveM native sistemleri ile advanced script geliştirme.
+       Oyun içi mekanikleri sıfırdan inşa etme. 
+    </p>
+    <p style="color:#ffe606;">★★★★★</p>
+</div>
 
         <div class="card">
             <h3>JavaScript / UI</h3>
@@ -370,6 +538,7 @@ footer {
                 NUI sistemleri, modern arayüzler ve interactive UI tasarımları.
                 Responsive ve kullanıcı dostu interface geliştirme.
             </p>
+            <p style="color:#ffe606;">★★★★★</p>
         </div>
 
         <div class="card">
@@ -378,6 +547,7 @@ footer {
                 Server performans analizi, lag azaltma ve event optimizasyonu.
                 Büyük ölçekli sunucular için stabil yapı kurma.
             </p>
+            <p style="color:#ffe606;">★★★★★</p>
         </div>
 
     </div>
@@ -386,35 +556,40 @@ footer {
 <section class="section" id="projects">
     <h2>Projeler</h2>
 
-    <div class="grid">
-        <div class="card">
-            <h3>Gelişmiş Bankacılık Sistemi</h3>
-            <p>Full UI + Backend Entegre Banka Sistemi, Transfer, ATM ve Log Sistemi.</p>
-        </div>
+    <div class="card">
+    <h3>Gelişmiş Bankacılık Sistemi</h3>
+    <p>Full UI + Backend Entegre Banka Sistemi, Transfer, ATM ve Log Sistemi.</p>
+    <p style="color:#38bdf8;">QBCore | Optimized | Active Use</p>
+</div>
 
         <div class="card">
             <h3>Radyo İletişim Sistemi</h3>
             <p>Dinamik Frekans Sistemi, Düşük Gecikmeli Ses Entegrasyonu.</p>
+            <p style="color:#38bdf8;">QBCore | Optimized | Active Use</p>
         </div>
 
         <div class="card">
             <h3>Envanter Sistemi V2</h3>
             <p>Drag & Drop Destekli Modern Envanter Sistemi, Optimize Yapı.</p>
+            <p style="color:#38bdf8;">QBCore | Optimized | Active Use</p>
         </div>
 
         <div class="card">
             <h3>İş ve Görev Sistemi</h3>
             <p>QBCore Uyumlu Gelişmiş Meslek Sistemi, Duty Toggle ve Rank Sistemi.</p>
+            <p style="color:#38bdf8;">QBCore | Optimized | Active Use</p>
         </div>
 
         <div class="card">
             <h3>UI Framework Pack</h3>
             <p>Custom NUI Framework, Reusable Component Yapısı.</p>
+            <p style="color:#38bdf8;">QBCore | Optimized | Active Use</p>
         </div>
 
         <div class="card">
             <h3>Sunucu Optimizasyon Paketi</h3>
             <p>Event Optimizasyonu ve Sunucu Performans İyileştirme Araçları.</p>
+            <p style="color:#38bdf8;">QBCore | Optimized | Active Use</p>
         </div>
     </div>
 </section>
@@ -424,12 +599,14 @@ footer {
     <h2>Ekibimiz</h2>
 
     <div class="grid">
+
         <div class="card">
             <img src="profil.png" style="width:60px;height:60px;border-radius:50%;margin-bottom:10px;">
             <h3>'aynen</h3>
             <p>Founder / FiveM Developer</p>
             <p>QBCore & Lua Specialist, Sistem Geliştirici.</p>
         </div>
+
     </div>
 </section>
 
